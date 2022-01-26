@@ -17,7 +17,7 @@ import os
 
 bot = telebot.TeleBot(config.token) #должно быть в начале. Вызывает токен
 
-cred = credentials.Certificate("C:/Users/Nurdaulet/Desktop/codes/nurlan_bot/2-3komn/key.json")
+cred = credentials.Certificate("home/krbot/nurlan_bot/2-3komn/key.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://nurlan-komn-default-rtdb.firebaseio.com/' })
 
@@ -40,7 +40,7 @@ def begin():
     while True:
         url = "https://krisha.kz/arenda/kvartiry/nur-sultan/?das[_sys.hasphoto]=1&das[live.rooms][0]=2&das[live.rooms][1]=3&das[live.rooms][2]=4&das[rent.period]=2&das[who]=1&page=" + str(page)
         driver = webdriver.Chrome(
-            executable_path='C:/Users/Nurdaulet/Desktop/codes/nurlan_bot/2-3komn/chromedriver.exe',
+            executable_path='home/krbot/nurlan_bot/2-3komn/chromedriver',
             options = options
 
         )
@@ -110,7 +110,7 @@ def begin():
 
                             imgs_small = driver.find_elements(By.CLASS_NAME, "gallery__small-item")
                             num_img = 1
-                            for img_small in imgs_small:
+                            for img_small in imgs_small[:10]:
                                 hover = ActionChains(driver).move_to_element(img_small)
                                 hover.perform()
                                 time.sleep(1)
